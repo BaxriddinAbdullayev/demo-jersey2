@@ -1,0 +1,15 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.RegionMapperPr">
+
+    <insert id="insertRegionPr" parameterType="uz.leeway.jersey.lesson01.db.RegionEntity" statementType="CALLABLE">
+        {CALL pr_insert_region(
+                #{p_name, mode=IN, jdbcType=VARCHAR},
+                #{p_soni, mode=IN, jdbcType=INTEGER},
+                #{p_new_id, mode=OUT, jdbcType=INTEGER},
+                #{p_result, mode=OUT, jdbcType=INTEGER},
+                #{p_message, mode=OUT, jdbcType=VARCHAR}
+              )}
+    </insert>
+
+</mapper>
+

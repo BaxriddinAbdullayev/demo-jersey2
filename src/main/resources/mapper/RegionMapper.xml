@@ -1,0 +1,37 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.RegionMapper">
+
+    <select id="getRegionById" resultType="uz.leeway.jersey.lesson01.db.RegionEntity">
+        select *
+        from regions
+        where 1 = 1
+        <if test="id != null">
+            and region_id = #{id}
+        </if>
+    </select>
+    
+    <insert id="insertRegion" parameterType="uz.leeway.jersey.lesson01.db.RegionEntity">
+        <selectKey keyProperty="region_id" keyColumn="reg_id" resultType="java.lang.Integer" order="BEFORE">
+            select regions_seq.nextval as reg_id from dual
+        </selectKey>
+
+        INSERT INTO regions (region_id,name,soni)
+        VALUES (#{region_id}, #{name}, #{soni})
+    </insert>
+
+    <update id="updateRegion" parameterType="uz.leeway.jersey.lesson01.db.RegionEntity">
+        UPDATE regions
+        SET name = #{name},
+            soni = #{soni}
+        WHERE region_id = #{region_id}
+    </update>
+
+
+        <delete id="deleteRegion" parameterType="uz.leeway.jersey.lesson01.db.RegionEntity">
+            DELETE
+            FROM regions
+            WHERE region_id = #{id}
+        </delete>
+
+</mapper>
+
